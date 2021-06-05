@@ -1,7 +1,12 @@
 
 pipeline {
-    agent none
+    agent any
     stages {
+        stage('build') {
+            steps {
+                bat "echo build"
+            }
+        }
         stage('Run Tests') {
             parallel {
                 stage('Test1') {
