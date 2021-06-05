@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat "echo build"
+                runMATLABCommand "pi"
             }
         }
         stage('Run Tests') {
@@ -12,7 +12,7 @@ pipeline {
                 stage('Test1') {
                     agent any
                     steps {
-                        bat "echo test1"
+                        runMATLABCommand "2*pi"
                     }
                     post {
                         always {
@@ -23,7 +23,7 @@ pipeline {
                 stage('Test2') {
                     agent any
                     steps {
-                        bat "echo test2"
+                        runMATLABCommand "3*pi"
                     }
                     post {
                         always {
