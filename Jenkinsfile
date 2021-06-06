@@ -13,22 +13,22 @@ pipeline {
                     steps {
                         bat "echo checking model Merics and compare to thresholds"
                     }
-                    post {
-                        always {
+                    //post {
+                        //always {
                             //junit "**/TEST-*.xml"
-                        }
-                    }
+                       // }
+                    //}
                 }
                 stage('Modeling Guidelines Checks') {
                     agent any
                     steps {
                         bat "echo Check modeling guidelines"
                     }
-                    post {
-                        always {
+                    //post {
+                     //   always {
                             //junit "**/TEST-*.xml"
-                        }
-                    }
+                      //  }
+                   // }
                 }
             }
         }
@@ -39,22 +39,22 @@ pipeline {
                     steps {
                         bat "echo running MIL Tests"
                     }
-                    post {
-                        always {
+                    //post {
+                    //    always {
                             //junit "**/TEST-*.xml"
-                        }
-                    }
+                    //    }
+                    //}
                 }
                 stage('Cogeden') {
                     agent any
                     steps {
                         bat "echo generating Code"
                     }
-                    post {
-                        always {
+                    //post {
+                    //    always {
                             //junit "**/TEST-*.xml"
-                        }
-                    }
+                    //    }
+                    //}
                 }
             }
         }
@@ -62,21 +62,21 @@ pipeline {
             steps {
                 bat "echo running MISRA analysis"
             }
-            post {
-                always {
+            //post {
+            //    always {
                     //junit "**/TEST-*.xml"
-                }
-            }
+            //    }
+            //}
         }
         stage('SIL Tests') {
             steps {
                 bat "echo running SIL Tests"
             }
-            post {
-                always {
+            //post {
+            //    always {
                     //junit "**/TEST-*.xml"
-                }
-            }
+            //    }
+            //}
         }
         post {
             always {
