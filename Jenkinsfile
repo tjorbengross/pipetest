@@ -1,36 +1,87 @@
-
 pipeline {
     agent any
     stages {
         stage('build') {
             steps {
-                runMATLABCommand "pi"
+                bat "echo "
             }
         }
-        stage('Run Tests') {
+        stage('Run Static Analysis') {
             parallel {
-                stage('Test1') {
+                stage('Model Metrics Analysis') {
                     agent any
                     steps {
-                        runMATLABCommand "2*pi"
+                        bat "echo checking model Merics and compare to thresholds"
                     }
                     post {
                         always {
-                            junit "**/TEST-*.xml"
+                            //junit "**/TEST-*.xml"
                         }
                     }
                 }
-                stage('Test2') {
+                stage('Modeling Guidelines Checks') {
                     agent any
                     steps {
-                        runMATLABCommand "3*pi"
+                        bat "echo Check modeling guidelines"
                     }
                     post {
                         always {
-                            junit "**/TEST-*.xml"
+                            //junit "**/TEST-*.xml"
                         }
                     }
                 }
+            }
+        }
+        stage('MIL and Codegen') {
+            parallel {
+                stage('MIL Tests') {
+                    agent any
+                    steps {
+                        bat "echo running MIL Tests"
+                    }
+                    post {
+                        always {
+                            //junit "**/TEST-*.xml"
+                        }
+                    }
+                }
+                stage('Cogeden') {
+                    agent any
+                    steps {
+                        bat "echo generating Code"
+                    }
+                    post {
+                        always {
+                            //junit "**/TEST-*.xml"
+                        }
+                    }
+                }
+            }
+        }
+        stage('MISRA Check') {
+            steps {
+                bat "echo running MISRA analysis"
+            }
+            post {
+                always {
+                    //junit "**/TEST-*.xml"
+                }
+            }
+        }
+        stage('SIL Tests') {
+            steps {
+                bat "echo running SIL Tests"
+            }
+            post {
+                always {
+                    //junit "**/TEST-*.xml"
+                }
+            }
+        }
+        post {
+            always {
+                bat "echo publish report"
+                //junit "**/TEST-*.xml"
             }
         }
     }
