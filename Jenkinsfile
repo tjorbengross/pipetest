@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                bat "echo "
+                bat "echo building or so..."
             }
         }
         stage('Run Static Analysis') {
@@ -78,10 +78,15 @@ pipeline {
             //    }
             //}
         }
-        post {
-            always {
-                bat "echo publish report"
+        stage('finalise') {
+            steps {
+                bat "echo finalise"
+            }
+            post {
+                always {
+                    bat "echo publish report"
                 //junit "**/TEST-*.xml"
+                }
             }
         }
     }
