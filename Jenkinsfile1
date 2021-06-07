@@ -4,7 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 bat "echo building or so..."
-                Sleep 5
+                bat "sleep 5"
             }
         }
         stage('MIL and Codegen') {
@@ -13,7 +13,7 @@ pipeline {
                     agent any
                     steps {
                         bat "echo running MIL Tests"
-                        Sleep 5
+                        bat "sleep 5"
                     }
                     //post {
                     //    always {
@@ -25,7 +25,7 @@ pipeline {
                     agent any
                     steps {
                         bat "echo generating Code"
-                        Sleep 5
+                        bat "sleep 5"
                     }
                     //post {
                     //    always {
@@ -38,7 +38,7 @@ pipeline {
         stage('MISRA Check') {
             steps {
                 bat "echo running MISRA analysis"
-                Sleep 5
+                bat "sleep 5"
             }
         }
     }
