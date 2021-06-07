@@ -10,7 +10,6 @@ pipeline {
         stage('MIL and Codegen') {
             parallel {
                 stage('MIL Tests') {
-                    agent any
                     steps {
                         bat "echo running MIL Tests"
                         bat "sleep 5"
@@ -22,7 +21,6 @@ pipeline {
                     //}
                 }
                 stage('Cogeden') {
-                    agent any
                     steps {
                         bat "echo generating Code"
                         bat "sleep 5"
