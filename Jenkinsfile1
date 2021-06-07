@@ -4,32 +4,7 @@ pipeline {
         stage('build') {
             steps {
                 bat "echo building or so..."
-            }
-        }
-        stage('Run Static Analysis') {
-            parallel {
-                stage('Model Metrics Analysis') {
-                    agent any
-                    steps {
-                        bat "echo checking model Merics and compare to thresholds"
-                    }
-                    //post {
-                        //always {
-                            //junit "**/TEST-*.xml"
-                       // }
-                    //}
-                }
-                stage('Modeling Guidelines Checks') {
-                    agent any
-                    steps {
-                        bat "echo Check modeling guidelines"
-                    }
-                    //post {
-                     //   always {
-                            //junit "**/TEST-*.xml"
-                      //  }
-                   // }
-                }
+                Sleep 5
             }
         }
         stage('MIL and Codegen') {
@@ -38,6 +13,7 @@ pipeline {
                     agent any
                     steps {
                         bat "echo running MIL Tests"
+                        Sleep 5
                     }
                     //post {
                     //    always {
@@ -49,6 +25,7 @@ pipeline {
                     agent any
                     steps {
                         bat "echo generating Code"
+                        Sleep 5
                     }
                     //post {
                     //    always {
@@ -61,32 +38,7 @@ pipeline {
         stage('MISRA Check') {
             steps {
                 bat "echo running MISRA analysis"
-            }
-            //post {
-            //    always {
-                    //junit "**/TEST-*.xml"
-            //    }
-            //}
-        }
-        stage('SIL Tests') {
-            steps {
-                bat "echo running SIL Tests"
-            }
-            //post {
-            //    always {
-                    //junit "**/TEST-*.xml"
-            //    }
-            //}
-        }
-        stage('finalise') {
-            steps {
-                bat "echo finalise"
-            }
-            post {
-                always {
-                    bat "echo publish report"
-                //junit "**/TEST-*.xml"
-                }
+                Sleep 5
             }
         }
     }
